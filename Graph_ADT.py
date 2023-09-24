@@ -1,28 +1,7 @@
-"""CSC111 Winter 2022 Assignment 3: Graphs, Recommender Systems, and Clustering (Part 1)
 
-Instructions (READ THIS FIRST!)
-===============================
-
-This Python module contains the modified graph and vertex classes you'll be using as the basis
-for this assignment, as well as additional functions for you to complete in this part.
-
-Copyright and Usage Information
-===============================
-
-This file is provided solely for the personal and private use of students
-taking CSC111 at the University of Toronto St. George campus. All forms of
-distribution of this code, whether as given or with any changes, are
-expressly prohibited. For more information on copyright for CSC111 materials,
-please consult our Course Syllabus.
-
-This file is Copyright (c) 2022 Mario Badr, David Liu, and Isaac Waller.
-"""
 from __future__ import annotations
 import csv
 from typing import Any
-
-# Make sure you've installed the necessary Python libraries (see assignment handout
-# "Installing new libraries" section)
 import networkx as nx  # Used for visualizing graphs (by convention, referred to as "nx")
 
 
@@ -31,16 +10,6 @@ class _Vertex:
 
     Each vertex item is either a user id or book title. Both are represented as strings,
     even though we've kept the type annotation as Any to be consistent with lecture.
-
-    Instance Attributes:
-        - item: The data stored in this vertex, representing a user or book.
-        - kind: The type of this vertex: 'user' or 'book'.
-        - neighbours: The vertices that are adjacent to this vertex.
-
-    Representation Invariants:
-        - self not in self.neighbours
-        - all(self in u.neighbours for u in self.neighbours)
-        - self.kind in {'user', 'book'}
     """
     item: Any
     kind: str
@@ -50,9 +19,6 @@ class _Vertex:
         """Initialize a new vertex with the given item and kind.
 
         This vertex is initialized with no neighbours.
-
-        Preconditions:
-            - kind in {'user', 'book'}
         """
         self.item = item
         self.kind = kind
@@ -97,19 +63,12 @@ class Graph:
         The new vertex is not adjacent to any other vertices.
         Do nothing if the given item is already in this graph.
 
-        Preconditions:
-            - kind in {'user', 'book'}
         """
         if item not in self._vertices:
             self._vertices[item] = _Vertex(item, kind)
 
     def add_edge(self, item1: Any, item2: Any) -> None:
         """Add an edge between the two vertices with the given items in this graph.
-
-        Raise a ValueError if item1 or item2 do not appear as vertices in this graph.
-
-        Preconditions:
-            - item1 != item2
         """
         if item1 in self._vertices and item2 in self._vertices:
             v1 = self._vertices[item1]
@@ -133,10 +92,6 @@ class Graph:
 
     def get_neighbours(self, item: Any) -> set:
         """Return a set of the neighbours of the given item.
-
-        Note that the *items* are returned, not the _Vertex objects themselves.
-
-        Raise a ValueError if item does not appear as a vertex in this graph.
         """
         if item in self._vertices:
             v = self._vertices[item]
@@ -146,11 +101,6 @@ class Graph:
 
     def get_all_vertices(self, kind: str = '') -> set:
         """Return a set of all vertex items in this graph.
-
-        If kind != '', only return the items of the given vertex kind.
-
-        Preconditions:
-            - kind in {'', 'user', 'book'}
         """
         if kind != '':
             return {v.item for v in self._vertices.values() if v.kind == kind}
@@ -163,7 +113,6 @@ class Graph:
         max_vertices specifies the maximum number of vertices that can appear in the graph.
         (This is necessary to limit the visualization output for large graphs.)
 
-        Note that this method is provided for you, and you shouldn't change it.
         """
         graph_nx = nx.Graph()
         for v in self._vertices.values():
@@ -181,9 +130,6 @@ class Graph:
 
         return graph_nx
 
-    ############################################################################
-    # Part 1, Q3
-    ############################################################################
     def get_similarity_score(self, item1: Any, item2: Any) -> float:
         """Return the similarity score between the two given items in this graph.
 
@@ -209,31 +155,8 @@ class Graph:
         else:
             raise ValueError
 
-    ############################################################################
-    # Part 1, Q4
-    ############################################################################
     def recommend_books(self, book: str, limit: int) -> list[str]:
         """Return a list of up to <limit> recommended books based on similarity to the given book.
-
-        The return value is a list of the titles of recommended books, sorted in
-        *descending order* of similarity score. Ties are broken in descending order
-        of book title. That is, if v1 and v2 have the same similarity score, then
-        v1 comes before v2 if and only if v1.item > v2.item.
-
-        The returned list should NOT contain:
-            - the input book itself
-            - any book with a similarity score of 0 to the input book
-            - any duplicates
-            - any vertices that represents a user (instead of a book)
-
-        Up to <limit> books are returned, starting with the book with the highest similarity score,
-        then the second-highest similarity score, etc. Fewer than <limit> books are returned if
-        and only if there aren't enough books that meet the above criteria.
-
-        Preconditions:
-            - book in self._vertices
-            - self._vertices[book].kind == 'book'
-            - limit >= 1
         """
 
         scores_so_far = []
@@ -256,37 +179,8 @@ class Graph:
             return list_so_far[:limit]
 
 
-################################################################################
-# Part 1, Q1
-################################################################################
 def load_review_graph(reviews_file: str, book_names_file: str) -> Graph:
     """Return a book review graph corresponding to the given datasets.
-
-    The book review graph stores one vertex for each user and book in the datasets.
-    Each vertex stores as its item either a user ID or book TITLE (the latter is why
-    you need the book_names_file). Use the "kind" _Vertex attribute to differentiate
-    between the two vertex types.
-
-    Edges represent a review between a user and a book. In this graph, each edge
-    only represents the existence of a review---IGNORE THE REVIEW SCORE in the
-    datasets, as we don't have a way to represent these scores (yet).
-
-    Preconditions:
-        - reviews_file is the path to a CSV file corresponding to the book review data
-          format described on the assignment handout
-        - book_names_file is the path to a CSV file corresponding to the book data
-          format described on the assignment handout
-
-    >>> g = load_review_graph('data/reviews_small.csv', 'data/book_names.csv')
-    >>> len(g.get_all_vertices(kind='book'))
-    4
-    >>> len(g.get_all_vertices(kind='user'))
-    5
-    >>> user1_reviews = g.get_neighbours('user1')
-    >>> len(user1_reviews)
-    3
-    >>> "Harry Potter and the Sorcerer's Stone (Book 1)" in user1_reviews
-    True
     """
     g = Graph()
     book_directory = set()
@@ -311,24 +205,3 @@ def load_review_graph(reviews_file: str, book_names_file: str) -> Graph:
             g.add_edge(row[0], book_names[row[1]])
 
     return g
-
-
-if __name__ == '__main__':
-    # You can uncomment the following lines for code checking/debugging purposes.
-    # However, we recommend commenting out these lines when working with the large
-    # datasets, as checking representation invariants and preconditions greatly
-    # increases the running time of the functions/methods.
-    # import python_ta.contracts
-    # python_ta.contracts.check_all_contracts()
-
-    import doctest
-    doctest.testmod()
-
-    import python_ta
-    # python_ta.check_all(config={
-    #     'max-line-length': 100,
-    #     'disable': ['E1136'],
-    #     'extra-imports': ['csv', 'networkx'],
-    #     'allowed-io': ['load_review_graph'],
-    #     'max-nested-blocks': 4
-    # })

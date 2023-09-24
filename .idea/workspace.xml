@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="23e99a03-4286-4771-9ec3-4d62956a83ed" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/cluster_weight.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/predictions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recommendation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a3_part1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Graph_ADT.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a3_part2_predictions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/a3_part2_recommendations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/a3_part3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/a3_visualization.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualization.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2VovDrjzPxgQTwN5SGkvBucFrhX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/aviralbhardwaj/Documents/GitHub/Recommendation-system",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="23e99a03-4286-4771-9ec3-4d62956a83ed" name="Changes" comment="" />
+      <created>1695515131547</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1695515131547</updated>
+      <workItem from="1695515132848" duration="76000" />
+      <workItem from="1695515915680" duration="1873000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Recommendation_system$a3_visualization.coverage" NAME="a3_visualization Coverage Results" MODIFIED="1695520014471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

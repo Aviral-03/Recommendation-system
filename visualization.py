@@ -1,29 +1,7 @@
-"""CSC111 Winter 2022 Assignment 3: Graphs, Recommender Systems, and Clustering (Visualization)
-
-Module Description
-==================
-
-This module contains some Python functions that you can use to visualize the graphs
-you're working with on this assignment. You should not modify anything in this file.
-It will not be submitted for grading.
-
-Disclaimer: we didn't have time to make this file fully PythonTA-compliant!
-
-Copyright and Usage Information
-===============================
-
-This file is provided solely for the personal and private use of students
-taking CSC111 at the University of Toronto St. George campus. All forms of
-distribution of this code, whether as given or with any changes, are
-expressly prohibited. For more information on copyright for CSC111 materials,
-please consult our Course Syllabus.
-
-This file is Copyright (c) 2022 Mario Badr, David Liu, and Isaac Waller.
-"""
 import networkx as nx
 from plotly.graph_objs import Scatter, Figure
 
-import a3_part1
+import Graph_ADT
 
 
 # Colours to use when visualizing different clusters.
@@ -40,17 +18,11 @@ BOOK_COLOUR = 'rgb(89, 205, 105)'
 USER_COLOUR = 'rgb(105, 89, 205)'
 
 
-def visualize_graph(graph: a3_part1.Graph,
+def visualize_graph(graph: Graph_ADT.Graph,
                     layout: str = 'spring_layout',
                     max_vertices: int = 5000,
                     output_file: str = '') -> None:
     """Use plotly and networkx to visualize the given graph.
-
-    Optional arguments:
-        - layout: which graph layout algorithm to use
-        - max_vertices: the maximum number of vertices that can appear in the graph
-        - output_file: a filename to save the plotly image to (rather than displaying
-            in your web browser)
     """
     graph_nx = graph.to_networkx(max_vertices)
 
@@ -102,16 +74,11 @@ def visualize_graph(graph: a3_part1.Graph,
         fig.write_image(output_file)
 
 
-def visualize_graph_clusters(graph: a3_part1.Graph, clusters: list[set],
+def visualize_graph_clusters(graph: Graph_ADT.Graph, clusters: list[set],
                              layout: str = 'spring_layout',
                              max_vertices: int = 5000,
                              output_file: str = '') -> None:
     """Visualize the given graph, using different colours to illustrate the different clusters.
-
-    Hides all edges that go from one cluster to another. (This helps the graph layout algorithm
-    positions vertices in the same cluster close together.)
-
-    Same optional arguments as visualize_graph (see that function for details).
     """
     graph_nx = graph.to_networkx(max_vertices)
     all_edges = list(graph_nx.edges)
