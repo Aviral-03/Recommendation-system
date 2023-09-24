@@ -18,3 +18,13 @@ This Book Recommendation System is a Python implementation of a weighted graph-b
 
    ```bash
    git clone https://github.com/Aviral-03/Recommendation-system.git
+
+Before you get started, make sure you have the following dependencies installed:
+
+- Python (>=3.6)
+- [List any other dependencies here]
+
+You can install the required Python packages using pip with the following command:
+
+```bash
+pip install -r requirements.txt
