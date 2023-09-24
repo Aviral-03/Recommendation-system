@@ -21,8 +21,7 @@ This Book Recommendation System is a Python implementation of a weighted graph-b
 
 Before you get started, make sure you have the following dependencies installed:
 
-- Python (>=3.6)
-- [List any other dependencies here]
+- Python (>=3.11)
 
 You can install the required Python packages using pip with the following command:
 
